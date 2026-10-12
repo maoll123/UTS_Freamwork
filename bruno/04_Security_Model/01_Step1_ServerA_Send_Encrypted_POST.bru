@@ -1,0 +1,23 @@
+meta {
+  name: 01_Step1_ServerA_Send_Encrypted_POST
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{serverAUrl}}/api/server-a/trigger-encrypted-sync
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "entity": "produk",
+    "custom_data": {
+      "nama_produk": "Monitor Gaming 27 Inch 165Hz IPS",
+      "harga_produk": 2850000,
+      "foto_produk": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=60",
+      "id_kategori": 1
+    }
+  }
+}

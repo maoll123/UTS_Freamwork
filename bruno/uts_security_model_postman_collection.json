@@ -1,0 +1,232 @@
+{
+  "info": {
+    "_postman_id": "uts-framework-security-model-2024",
+    "name": "UTS Framework - Security Model Collection",
+    "description": "Koleksi API untuk pengujian RESTful API Kategori, Produk, dan Security Model Client-Server Enkripsi",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01. Auth (JWT)",
+      "item": [
+        {
+          "name": "Generate JWT Token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin_uts\",\n  \"role\": \"client_endpoint\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/token",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "auth", "token"]
+            }
+          }
+        },
+        {
+          "name": "Verify Token Status",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{jwtToken}}" }],
+            "url": {
+              "raw": "http://localhost:5000/api/auth/verify",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "auth", "verify"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Kategori",
+      "item": [
+        {
+          "name": "GET All Kategori",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/kategori",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "kategori"]
+            }
+          }
+        },
+        {
+          "name": "GET Kategori by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/kategori/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "kategori", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST Create Kategori",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_kategori\": \"Aksesoris Komputer & Mobile\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/kategori",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "kategori"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Produk",
+      "item": [
+        {
+          "name": "GET All Produk",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/produk",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "produk"]
+            }
+          }
+        },
+        {
+          "name": "GET Produk by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/produk/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "produk", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST Create Produk",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_produk\": \"Earbuds TWS Wireless Bass Boost\",\n  \"harga_produk\": 350000,\n  \"foto_produk\": \"https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format&fit=crop&q=60\",\n  \"id_kategori\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/produk",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "produk"]
+            }
+          }
+        },
+        {
+          "name": "GET Filter Produk by Kategori",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/produk?id_kategori=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "produk"],
+              "query": [{ "key": "id_kategori", "value": "1" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Security Model Flow",
+      "item": [
+        {
+          "name": "Step 1: Server A Send Encrypted POST",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity\": \"produk\",\n  \"custom_data\": {\n    \"nama_produk\": \"Tablet Graphic Drawing Pad\",\n    \"harga_produk\": 950000,\n    \"foto_produk\": \"https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&auto=format&fit=crop&q=60\",\n    \"id_kategori\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5001/api/server-a/trigger-encrypted-sync",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "server-a", "trigger-encrypted-sync"]
+            }
+          }
+        },
+        {
+          "name": "Step 2: Server B Receive Encrypted & Store DB B",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"Server_A\",\n  \"iv\": \"3a7b9c1d2e4f5a6b7c8d9e0f1a2b3c4d\",\n  \"encryptedData\": \"b53f66c0d603e91189688bc89ef2f9bc9ebfa1361c775bb5f56f157ad3d5c9dd504b281f621379be408e0eeb9bb42169ab7a4e69b9ce95c99ca828e85beecde6b359cbb147816e8b4eeb2292f3f98295\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/sync/receive-encrypted",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "sync", "receive-encrypted"]
+            }
+          }
+        },
+        {
+          "name": "Step 4: EndPoint GET Decrypted with JWT",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{jwtToken}}" }],
+            "url": {
+              "raw": "http://localhost:5000/api/produk/secure/decrypted",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "produk", "secure", "decrypted"]
+            }
+          }
+        },
+        {
+          "name": "Full Security Model Pipeline Simulation",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama_produk\": \"Smart Lamp Wifi RGB 16 Million Color\",\n  \"harga_produk\": 175000,\n  \"id_kategori\": 4\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/sync/simulate-pipeline",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "sync", "simulate-pipeline"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

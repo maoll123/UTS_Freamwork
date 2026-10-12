@@ -1,0 +1,32 @@
+{
+  "name": "uts-framework-backend",
+  "version": "1.0.0",
+  "description": "Backend Express.js untuk UTS Framework - Security Model Client-Server Enkripsi & JWT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "server-a": "node --watch server_a.js",
+    "migrate": "node scripts/migrate.js"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "jwt",
+    "crypto",
+    "encryption",
+    "rest-api",
+    "vue3"
+  ],
+  "author": "Senior Fullstack Engineer",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.3",
+    "puppeteer-core": "^25.13.0"
+  }
+}

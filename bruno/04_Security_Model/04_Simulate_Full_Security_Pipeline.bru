@@ -1,0 +1,21 @@
+meta {
+  name: 04_Simulate_Full_Security_Pipeline
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/sync/simulate-pipeline
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "nama_produk": "Mechanical Keyboard Wireless Hot-Swappable",
+    "harga_produk": 1150000,
+    "foto_produk": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60",
+    "id_kategori": 1,
+    "nama_kategori": "Elektronik & Gadget"
+  }
+}

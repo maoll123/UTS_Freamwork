@@ -1,0 +1,19 @@
+meta {
+  name: 02_Step2_ServerB_Receive_And_Store_DB_B
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/sync/receive-encrypted
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "source": "Server_A_Client",
+    "iv": "3a7b9c1d2e4f5a6b7c8d9e0f1a2b3c4d",
+    "encryptedData": "b53f66c0d603e91189688bc89ef2f9bc9ebfa1361c775bb5f56f157ad3d5c9dd504b281f621379be408e0eeb9bb42169ab7a4e69b9ce95c99ca828e85beecde6b359cbb147816e8b4eeb2292f3f98295"
+  }
+}

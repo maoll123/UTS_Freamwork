@@ -1,0 +1,22 @@
+{
+  "name": "uts-framework-security-model",
+  "version": "1.0.0",
+  "description": "Proyek UTS Pemrograman Framework - Model Keamanan Komunikasi Terenkripsi Client-Server & RESTful API",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:server-a": "cd backend && npm run server-a",
+    "dev:frontend": "cd frontend && npm run dev",
+    "start:backend": "cd backend && npm start",
+    "migrate": "cd backend && npm run migrate"
+  },
+  "keywords": [
+    "uts-framework",
+    "express",
+    "mysql",
+    "vue3",
+    "bruno",
+    "security-model"
+  ],
+  "author": "Senior Fullstack Engineer",
+  "license": "ISC"
+}

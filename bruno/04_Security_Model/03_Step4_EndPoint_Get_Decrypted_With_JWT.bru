@@ -1,0 +1,15 @@
+meta {
+  name: 03_Step4_EndPoint_Get_Decrypted_With_JWT
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/produk/secure/decrypted
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwtToken}}
+}
